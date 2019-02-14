@@ -5,7 +5,7 @@ var url = require('url');
 var coins = require("./coins.js");
 var credentials = require("./credentials.js");
 
-var currentCoin = process.env.BTCEXP_COIN || "BTC";
+var currentCoin = process.env.BTCEXP_COIN || "BSV";
 
 var rpcCred = credentials.rpc;
 
@@ -133,19 +133,20 @@ module.exports = {
 	],
 
 	donationAddresses:{
-		coins:["BTC", "LTC"],
-		sites:{"BTC":"https://btc.chaintools.io", "LTC":"https://ltc.chaintools.io"},
+		coins:["BTC", "LTC", "BSV"],
+		sites:{"BTC":"https://btc.chaintools.io", "LTC":"https://ltc.chaintools.io", "BSV":"https://github.com/Zwilla/bsv-rpc-explorer"},
 
 		"BTC":{address:"3NPGpNyLLmVKCEcuipBs7G4KpQJoJXjDGe"},
-		"LTC":{address:"ME4pXiXuWfEi1ANBDo9irUJVcZBhsTx14i"}
+		"LTC":{address:"ME4pXiXuWfEi1ANBDo9irUJVcZBhsTx14i"},
+		"BSV":{address:"1PYZ7nodShkFgR7WvM6dXbZ3oa3bSRkVUi"},
 	},
 
 	headerDropdownLinks: {
 		title:"Related Sites",
 		links:[
-			{name: "Bitcoin Explorer", url:"https://btc.chaintools.io", imgUrl:"/img/logo/btc.svg"},
-			{name: "Litecoin Explorer", url:"https://ltc.chaintools.io", imgUrl:"/img/logo/ltc.svg"},
-			{name: "Lightning Explorer", url:"https://lightning.chaintools.io", imgUrl:"/img/logo/lightning.svg"},
+			{name: "Bitcoin SV Explorer", url:"https://explore.bsv.rocks", imgUrl:"/img/logo/bsv.png"},
+			{name: "Bitcoin SV Project", url:"https://bitcoinsv.io", imgUrl:"/img/logo/bsv.png"},
+			{name: "Bitcoin SV Academy", url:"http://bitcoinsv.academy/links", imgUrl:"/img/logo/bsv.png"},
 		]
 	}
 };
