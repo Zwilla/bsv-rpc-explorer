@@ -2,7 +2,7 @@
 
 const args = require('meow')(`
     Usage
-      $ btc-rpc-explorer [options]
+      $ bsv-rpc-explorer [options]
 
     Options
       -p, --port <port>              port to bind http server [default: 3002]
@@ -42,16 +42,16 @@ const args = require('meow')(`
       -v, --version                  output version number
 
     Examples
-      $ btc-rpc-explorer --port 8080 --bitcoind-port 18443 --bitcoind-cookie ~/.bitcoin/regtest/.cookie
-      $ btc-rpc-explorer -p 8080 -P 18443 -c ~/.bitcoin/regtest.cookie
+      $ bsv-rpc-explorer --port 8080 --bitcoind-port 18443 --bitcoind-cookie ~/.bitcoin/regtest/.cookie
+      $ bsv-rpc-explorer -p 8080 -P 18443 -c ~/.bitcoin/regtest.cookie
 
     Or using connection URIs
-      $ btc-rpc-explorer -b bitcoin://bob:myPassword@127.0.0.1:18443/
-      $ btc-rpc-explorer -b bitcoin://127.0.0.1:18443/?cookie=$HOME/.bitcoin/regtest/.cookie
-      $ btc-rpc-explorer --influxdb-uri influx://bob:myPassword@127.0.0.1:8086/dbName
+      $ bsv-rpc-explorer -b bitcoin://bob:myPassword@127.0.0.1:18443/
+      $ bsv-rpc-explorer -b bitcoin://127.0.0.1:18443/?cookie=$HOME/.bitcoin/regtest/.cookie
+      $ bsv-rpc-explorer --influxdb-uri influx://alice:myPassword@127.0.0.1:8086/dbName
 
     All options may also be specified as environment variables
-      $ BTCEXP_PORT=8080 BTCEXP_BITCOIND_PORT=18443 BTCEXP_BITCOIND_COOKIE=~/.bitcoin/regtest/.cookie btc-rpc-explorer
+      $ BTCEXP_PORT=8080 BTCEXP_BITCOIND_PORT=18443 BTCEXP_BITCOIND_COOKIE=~/.bitcoin/regtest/.cookie bsv-rpc-explorer
 
 
 `, { flags: { port: {alias:'p'}, host: {alias:'i'}, basicAuthPassword: {alias:'a'}, coin: {alias:'C'}
