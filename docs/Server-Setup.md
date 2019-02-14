@@ -1,4 +1,4 @@
-### Setup of https://btc-explorer.com on Ubuntu 16.04
+### Setup of https://bsv-explorer.com on Ubuntu 16.04 +
 
     apt update
     apt upgrade
@@ -11,14 +11,16 @@
     apt upgrade
     apt install python-certbot-nginx
     
-Copy content from [./btc-explorer.com.conf](./btc-explorer.com.conf) into `/etc/nginx/sites-available/btc-explorer.com.conf`
+## Copy content from
+### [./btc-explorer.com.conf](./bsv-explorer.com.conf) into `/etc/nginx/sites-available/bsv-explorer.com.conf`
 
-    certbot --nginx -d btc-explorer.com
+    certbot --nginx -d bsv-explorer.com
     cd /etc/ssl/certs
     openssl dhparam -out dhparam.pem 4096
     cd /home/bitcoin
-    git clone https://github.com/janoside/btc-rpc-explorer.git
-    cd /home/bitcoin/btc-rpc-explorer
+    git clone https://github.com/zwilla/bsv-rpc-explorer.git
+    cd /home/bitcoin/bsv-rpc-explorer
     npm install
     npm run build
-    pm2 start bin/www --name "btc-rpc-explorer"
+## modify your .env file and copy it to /home/bitcoin/.config/bsv-rpc-explorer.env    
+    pm2 start bin/www --name "bsv-rpc-explorer"
