@@ -56,7 +56,7 @@ See [configuration](#configuration) for details.
 ### Configuration
 
 Configuration options may be passed as environment variables
-or by creating an env file at `~/.config/btc-rpc-explorer.env`
+or by creating an env file at `~/.config/bsv-rpc-explorer.env`
 or at `.env` in the working directory.
 See [.env-sample](.env-sample) for a list of the options and details for formatting `.env`.
 
