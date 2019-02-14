@@ -1,6 +1,6 @@
 {
   "name": "bsv-rpc-explorer",
-  "version": "^1.0.1",
+  "version": "1.0.1",
   "description": "Explorer for Bitcoin SV and RPC-compatible blockchains",
   "private": false,
   "bin": "bin/cli.js",
