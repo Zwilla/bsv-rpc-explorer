@@ -37,6 +37,8 @@ The below instructions are geared toward BSV, but can be adapted easily to other
 
 ## Instructions
 
+About your server here: [./docs/Server_Setup.md](./docs/Server_Setup.md)
+
 ```bash
 npm install -g bsv-rpc-explorer
 bsv-rpc-explorer
