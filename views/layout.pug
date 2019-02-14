@@ -11,10 +11,10 @@ html(lang="en")
 			style.
 				hr { background-color: #555555; }
 		else
-			link(rel="stylesheet", href="/css/bootstrap.min.css", integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO")
+			link(rel="stylesheet", href="/css/bootstrap.min.css")
 		
 		link(rel="stylesheet", href="/css/fonts.css")
-		link(rel="stylesheet", href="/css/highlight.min.css", integrity="sha384-zhIsEafzyQWHSoMCQ4BfT8ZlRXQyIFwAHAJn32PNdsb8n6tVysGZSLpEEIvCskw4")
+		link(rel="stylesheet", href="/css/highlight.min.css")
 		link(rel="stylesheet", href="/css/radial-progress.css", type="text/css")
 		link(rel='stylesheet', href='/css/styling.css')
 
@@ -124,12 +124,12 @@ html(lang="en")
 							dl
 								dt Source
 								dd
-									a(href="https://github.com/janoside/btc-rpc-explorer") github.com/janoside/btc-rpc-explorer
+									a(href="https://github.com/zwilla/bsv-rpc-explorer") github.com/zwilla/bsv-rpc-explorer
 
 								if (sourcecodeVersion)
 									dt Running Version
 									dd
-										a(href=("https://github.com/janoside/btc-rpc-explorer/commit/" + sourcecodeVersion)) #{sourcecodeVersion}
+										a(href=("https://github.com/zwilla/bsv-rpc-explorer/commit/" + sourcecodeVersion)) #{sourcecodeVersion}
 										span(style="color: #ccc;")  (#{sourcecodeDate})
 
 								if (config.demoSite)
@@ -138,16 +138,16 @@ html(lang="en")
 										if (coinConfig.demoSiteUrl)
 											a(href=coinConfig.demoSiteUrl) #{coinConfig.demoSiteUrl}
 										else
-											a(href="https://btc-explorer.chaintools.io") https://btc-explorer.chaintools.io
+											a(href="https://bsv-explorer.com") https://bsv-explorer.com
 										
 										div(class="mt-2")
-											- var demoSiteCoins = ["BTC", "LTC"];
+											- var demoSiteCoins = ["BSV"];
 											each demoSiteCoin in demoSiteCoins
 												a(href=coinConfigs[demoSiteCoin].demoSiteUrl, class="mr-2", title=coinConfigs[demoSiteCoin].siteTitle)
-													img(src=("/img/logo/" + demoSiteCoin.toLowerCase() + ".svg"), alt=demoSiteCoin.toLowerCase())
+													img(src=("/img/logo/" + demoSiteCoin.toLowerCase() + ".png"), alt=demoSiteCoin.toLowerCase())
 
-											a(href="https://lightning.chaintools.io", class="mr-2", title="Lightning Explorer")
-												img(src=("/img/logo/lightning.svg"), style="width: 32px; height: 32px;", alt="lightning")
+											a(href="https://bsv-explorer.com", class="mr-2", title="Bitcoin SV Explorer")
+												img(src=("/img/logo/bsv.png"), style="width: 32px; height: 32px;", alt="Bitcoin Satoshi Vision")
 
 						div(class="col-md-7 text-md-right")
 							dl
@@ -165,12 +165,12 @@ html(lang="en")
 													span #{coin}: 
 													a(href=(config.donationAddresses.sites[coin] + "/address/" + config.donationAddresses[coin].address)) #{config.donationAddresses[coin].address}
 		
-		script(src="/js/jquery.min.js", integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=")
-		script(src="/js/popper.min.js", integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut")
-		script(src="/js/bootstrap.min.js", integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy")
-		script(defer, src="/js/fontawesome.min.js", integrity="sha384-eVEQC9zshBn0rFj4+TU78eNA19HMNigMviK/PU/FFjLXqa/GKPgX58rvt5Z8PLs7")
+		script(src="/js/jquery.min.js")
+		script(src="/js/popper.min.js")
+		script(src="/js/bootstrap.min.js")
+		script(defer, src="/js/fontawesome.min.js")
 
-		script(src="/js/highlight.min.js", integrity="sha384-xLrpH5gNLD6HMLgeDH1/p4FXigQ8T9mgNm+EKtCSXL0OJ5i1bnSi57dnwFuUMM9/")
+		script(src="/js/highlight.min.js")
 		
 		script.
 			$(document).ready(function() {
@@ -181,7 +181,7 @@ html(lang="en")
 			hljs.initHighlightingOnLoad();
 
 		if (config.credentials.sentryUrl && config.credentials.sentryUrl.length > 0)
-			script(src="/js/sentry.min.js", integrity="sha384-da/Bo2Ah6Uw3mlhl6VINMblg2SyGbSnULKrukse3P5D9PTJi4np9HoKvR19D7zOL", crossorigin="anonymous")
+			script(src="/js/sentry.min.js")
 			script.
 				Sentry.init({ dsn: '#{config.credentials.sentryUrl}' });
 
