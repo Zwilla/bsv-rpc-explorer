@@ -23,8 +23,10 @@ module.exports = {
 		host: ifxUri.hostname || process.env.BTCEXP_INFLUXDB_HOST || "127.0.0.1",
 		port: ifxUri.port || process.env.BTCEXP_INFLUXDB_PORT || 8086,
 		database: ifxUri.pathname && ifxUri.pathname.substr(1) || process.env.BTCEXP_INFLUXDB_DBNAME || "influxdb",
+		// influx -precision rfc3339 [ENTER] CREATE DATABASE influxdb
 		username: ifxAuth[0] || process.env.BTCEXP_INFLUXDB_USER || "admin",
 		password: ifxAuth[1] || process.env.BTCEXP_INFLUXDB_PASS || "admin"
+		// influx -precision rfc3339 [ENTER] CREATE USER admin WITH PASSWORD 'admin' WITH ALL PRIVILEGES
 	},
 
 	// optional: enter your api access key from ipstack.com below
