@@ -1,7 +1,7 @@
 {
-  "name": "btc-rpc-explorer",
-  "version": "1.0.0",
-  "description": "Explorer for Bitcoin and RPC-compatible blockchains",
+  "name": "bsv-rpc-explorer",
+  "version": "1.0.1",
+  "description": "Explorer for Bitcoin SV and RPC-compatible blockchains",
   "private": false,
   "bin": "bin/cli.js",
   "scripts": {
@@ -12,15 +12,17 @@
     "refresh-mining-pool-configs":"node ./bin/refresh-mining-pool-configs.js"
   },
   "keywords": [
-    "bitcoin",
-    "litecoin",
-    "blockchain"
+    "bitcoin sv",
+    "bitcoinsv",
+    "blockchain",
+    "blockchain explorer",
+    "bitcoin satoshi vision",
   ],
-  "author": "Dan Janosik <dan@47.io>",
+  "author": "2018- Dan Janosik <dan@47.io> BSV additions 2019- Miguel Padilla",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/janoside/btc-rpc-explorer.git"
+    "url": "git+https://github.com/zwilla/bsv-rpc-explorer.git"
   },
   "dependencies": {
     "basic-auth": "^2.0.1",
