@@ -144,7 +144,7 @@ module.exports = {
 	headerDropdownLinks: {
 		title:"Related Sites",
 		links:[
-			{name: "Bitcoin SV Explorer", url:"https://explore.bsv.rocks", imgUrl:"/img/logo/bsv.png"},
+			{name: "Bitcoin SV Explorer", url:"https://bsv-explorer.com", imgUrl:"/img/logo/bsv.png"},
 			{name: "Bitcoin SV Project", url:"https://bitcoinsv.io", imgUrl:"/img/logo/bsv.png"},
 			{name: "Bitcoin SV Academy", url:"http://bitcoinsv.academy/links", imgUrl:"/img/logo/bsv.png"},
 		]
