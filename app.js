@@ -7,9 +7,9 @@ var path = require('path');
 var dotenv = require("dotenv");
 var fs = require('fs');
 
-var configPaths = [ path.join(os.homedir(), '.config', 'btc-rpc-explorer.env'), path.join(process.cwd(), '.env') ];
+var configPaths = [ path.join(os.homedir(), '.config', 'bsv-rpc-explorer.env'), path.join(process.cwd(), '.env') ];
 configPaths.filter(fs.existsSync).forEach(path => {
-	console.log('Loading env file:', path);
+	console.log('Loading bsv env file:', path);
 	dotenv.config({ path });
 });
 
@@ -177,21 +177,21 @@ function logBlockStats() {
 					var timestamp = new Date(block.time * 1000);
 
 					var blockInfo = {
-						strippedsize:block.strippedsize,
+						//strippedsize:block.strippedsize,
 						size:block.size,
-						weight:block.weight,
+						//weight:block.weight,
 						version:block.version,
 						nonce:block.nonce,
-						txcount:block.nTx,
+						//txcount:block.nTx,
 						totalfees:totalfees.toNumber(),
-						avgfee:(block.totalFees / block.nTx),
-						avgfeeperweight:(block.totalFees / block.weight),
-						avgfeepersize:(block.totalFees / block.size),
+						//avgfee:(block.totalFees / block.nTx),
+						//avgfeeperweight:(block.totalFees / block.weight),
+						//avgfeepersize:(block.totalFees / block.size),
 						avgtxsize:(block.size / block.nTx),
-						avgtxweight:(block.weight / block.nTx),
+						//avgtxweight:(block.weight / block.nTx),
 						blockreward:blockreward.toNumber(),
 						timemediantimediff:(block.time - block.mediantime),
-						witnessdatasize:(block.size - block.strippedsize),
+						//witnessdatasize:(block.size - block.strippedsize),
 						feeratio:totalfees.dividedBy(totalfees.plus(blockreward)).toNumber()
 					};
 
