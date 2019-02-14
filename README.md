@@ -40,6 +40,8 @@ The below instructions are geared toward BSV, but can be adapted easily to other
 About your server here: [./docs/Server_Setup.md](./docs/Server_Setup.md)
 
 ```bash
+git clone https://github.com/Zwilla/bsv-rpc-explorer.git
+git pull
 npm install -g bsv-rpc-explorer
 bsv-rpc-explorer
 ```
