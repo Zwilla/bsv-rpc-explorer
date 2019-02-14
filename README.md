@@ -1,4 +1,4 @@
-# BTC RPC Explorer
+# BSV RPC Explorer
 
 Simple, database-free Bitcoin blockchain explorer, via RPC. Built with Node.js, express, bootstrap-v4.
 
@@ -8,8 +8,10 @@ I built this tool because I wanted to use it myself. Whatever reasons one might 
 
 Live demos are available at:
 
-* BTC: https://btc.chaintools.io
-* LTC: https://ltc.chaintools.io
+* BSV: https://bsv-explorer.com
+* BSV: http://whatsonchain.com
+* BSV: https://bsvexplorer.io
+* BSV: https://svblox.com
 
 # Features
 
@@ -21,23 +23,23 @@ Live demos are available at:
 * Optional transaction history for addresses by querying configurable ElectrumX servers
 * Mempool summary, with fee, size, and age breakdowns
 * RPC command browser and terminal
-* Currently supports BTC, LTC (support for any Bitcoin-RPC-protocol-compliant coin can be added easily)
+* Currently supports BSV (support for any Bitcoin-RPC-protocol-compliant coin can be added easily)
 
 # Getting started
 
-The below instructions are geared toward BTC, but can be adapted easily to other coins.
+The below instructions are geared toward BSV, but can be adapted easily to other coins.
 
 ## Prerequisites
 
-1. Install and run a full, archiving node - [instructions](https://bitcoin.org/en/full-node). Ensure that your bitcoin node has full transaction indexing enabled (`txindex=1`) and the RPC server enabled (`server=1`).
+1. Install and run a full, archiving node - [instructions](https://github.com/bitcoin-sv/bitcoin-sv/blob/master/doc/README.md). [download](https://download.bitcoinsv.io/bitcoinsv/) Ensure that your bitcoin node has full transaction indexing enabled (`txindex=1`) and the RPC server enabled (`server=1`).
 2. Synchronize your node with the Bitcoin network.
 3. "Recent" version of Node.js (8+ recommended).
 
 ## Instructions
 
 ```bash
-npm install -g janoside/btc-rpc-explorer
-btc-rpc-explorer
+npm install -g bsv-rpc-explorer
+bsv-rpc-explorer
 ```
 
 If you're running on mainnet with the default datadir and port, this Should Just Work.
@@ -56,19 +58,23 @@ See [.env-sample](.env-sample) for a list of the options and details for formatt
 You may also pass options as CLI arguments, for example:
 
 ```bash
-btc-rpc-explorer --port 8080 --bitcoind-port 18443 --bitcoind-cookie ~/.bitcoin/regtest/.cookie
+bsv-rpc-explorer --port 8080 --bitcoind-port 18443 --bitcoind-cookie ~/.bitcoin/regtest/.cookie
 ```
 
-See `btc-rpc-explorer --help` for the full list of CLI options.
+See `bsv-rpc-explorer --help` for the full list of CLI options.
 
 ## Run via Docker
 
-1. `docker build -t btc-rpc-explorer .`
-2. `docker run -p 3002:3002 -it btc-rpc-explorer`
+1. `docker build -t bsv-rpc-explorer .`
+2. `docker run -p 3002:3002 -it bsv-rpc-explorer`
 
 # Donate
 
 Any support for continued development of this tool is appreciated!
+
+* [Bitcoin](bitcoin:1PYZ7nodShkFgR7WvM6dXbZ3oa3bSRkVUi): 1PYZ7nodShkFgR7WvM6dXbZ3oa3bSRkVUi
+
+![Bitcoin SV Donation QR Code](/public/img/qr-bsv.png)
 
 * [Bitcoin](bitcoin:3NPGpNyLLmVKCEcuipBs7G4KpQJoJXjDGe): 3NPGpNyLLmVKCEcuipBs7G4KpQJoJXjDGe
 
