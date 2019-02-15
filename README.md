@@ -43,6 +43,9 @@ About your server here: [./docs/Server_Setup.md](./docs/Server_Setup.md)
 git clone https://github.com/Zwilla/bsv-rpc-explorer.git
 cd bsv-rpc-explorer
 git pull
+npm install -g npm
+npm install -g
+npm audit fix
 npm install -g
 bsv-rpc-explorer
 ```
