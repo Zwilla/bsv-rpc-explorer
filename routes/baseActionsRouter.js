@@ -14,6 +14,8 @@ var utils = require('./../app/utils.js');
 var coins = require("./../app/coins.js");
 var config = require("./../app/config.js");
 var coreApi = require("./../app/api/coreApi.js");
+//var app = require('./../app');
+//var app = require('express')();
 
 const forceCsrf = csurf({ ignoreMethods: [] });
 
@@ -47,10 +49,13 @@ router.get("/", function(req, res) {
 	coreApi.getBlockchainInfo().then(function(getblockchaininfo) {
 		res.locals.getblockchaininfo = getblockchaininfo;
 
-		if (getblockchaininfo.chain !== 'regtest') {
-			var chainTxStatsIntervals = [ 144, 144 * 7, 144 * 30, 144 * 365 ];
-			res.locals.chainTxStatsLabels = [ "24 hours", "1 week", "1 month", "1 year", "All time" ];
-			for (var i = 0; i < chainTxStatsIntervals.length; i++) {
+		if (getblockchaininfo.chain !== 'regtest')
+		{
+            var chainTxStatsIntervals = [ 144, 144 * 7, 144 * 30, 144 * 365].filter(numBlocks => numBlocks < getblockchaininfo.blocks);
+            res.locals.chainTxStatsLabels = [ "24 hours", "1 week", "1 month", "1 year" ].slice(0, chainTxStatsIntervals.length).concat("All time");
+
+			for (var i = 0; i < chainTxStatsIntervals.length; i++)
+			{
 				promises.push(coreApi.getChainTxStats(chainTxStatsIntervals[i]));
 			}
 		}
@@ -749,69 +754,94 @@ router.get("/address/:address", function(req, res) {
 	});
 });
 
-router.get("/rpc-terminal", function(req, res) {
-	if (!config.demoSite && !req.authenticated) {
-		res.send("RPC Terminal / Browser may not be accessed without logging-in. This restriction can be modified in your config.js file.");
+// if (!process.env.ALLOW_RPCBROWSER || app.get('ALLOW_RPCBROWSER' == false) || (!config.demoSite && !req.authenticated)) {
+
+var bodyParser = require('body-parser');
+var pub = __dirname + '/public';
+var app = express();
+var Recaptcha = require('express-recaptcha').Recaptcha;
+var recaptcha = new Recaptcha('6LdYxJEUAAAAALBOeJqgYExsmmrm2WZaTuuj5faT', '6LdYxJEUAAAAACtgFDVjXQlRJ7XTObqCRlaEjCuC');
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true } ));
+app.use(express.static(pub));
+app.set('views', __dirname + '/views');
+app.set('view engine', 'jade');
+
+router.get("/rpc-terminal", function(req, res)
+{
+	if (!process.env.BSVEXP_ALLOW_TERMINAL) {
+		res.send("ERR: 757 - RPC Terminal / Browser may not be accessed without logging-in. This restriction can be modified in your config.js file.");
 		return;
 	}
 
-	res.render("terminal");
+	res.render("terminal", { captcha:recaptcha.render() });
 });
 
-router.post("/rpc-terminal", function(req, res) {
-	if (!config.demoSite && !req.authenticated) {
-		res.send("RPC Terminal / Browser may not be accessed without logging-in. This restriction can be modified in your config.js file.");
+// if (!config.demoSite && !req.authenticated) {
+
+router.post("/rpc-terminal", function(req, res)
+{
+    if (!process.env.BSVEXP_ALLOW_TERMINAL)
+    {
+		res.send("ERR: 763 - RPC Terminal / Browser may not be accessed without logging-in. This restriction can be modified in your config.js file.");
 		return;
 	}
 
-	var params = req.body.cmd.trim().split(/\s+/);
-	var cmd = params.shift();
-	var parsedParams = [];
 
-	params.forEach(function(param, i) {
-		if (!isNaN(param)) {
-			parsedParams.push(parseInt(param));
+    var params = req.body.cmd.trim().split(/\s+/);
+    var cmd = params.shift();
+    var parsedParams = [];
 
-		} else {
-			parsedParams.push(param);
-		}
-	});
+    params.forEach(function(param, i)
+    {
+        if (!isNaN(param)) {
+            parsedParams.push(parseInt(param));
 
-	if (config.rpcBlacklist.includes(cmd.toLowerCase())) {
-		res.write("Sorry, that RPC command is blacklisted. If this is your server, you may allow this command by removing it from the 'rpcBlacklist' setting in config.js.", function() {
-			res.end();
-		});
+        } else {
+            parsedParams.push(param);
+        }
+    });
 
-		return;
-	}
+    if (config.rpcBlacklist.includes(cmd.toLowerCase())) {
+        res.write("Sorry, that RPC command is blacklisted. If this is your server, you may allow this command by removing it from the 'rpcBlacklist' setting in config.js.", function() {
+            res.end();
+        });
 
-	client.command([{method:cmd, parameters:parsedParams}], function(err, result, resHeaders) {
-		console.log("Result[1]: " + JSON.stringify(result, null, 4));
-		console.log("Error[2]: " + JSON.stringify(err, null, 4));
-		console.log("Headers[3]: " + JSON.stringify(resHeaders, null, 4));
+        return;
+    }
 
-		if (err) {
-			console.log(JSON.stringify(err, null, 4));
+    client.command([{method:cmd, parameters:parsedParams}], function(err, result, resHeaders)
+    {
+        console.log("Result[1]: " + JSON.stringify(result, null, 4));
+        console.log("Error[2]: " + JSON.stringify(err, null, 4));
+        console.log("Headers[3]: " + JSON.stringify(resHeaders, null, 4));
 
-			res.write(JSON.stringify(err, null, 4), function() {
-				res.end();
-			});
+        if (err) {
+            console.log(JSON.stringify(err, null, 4));
+            res.write(JSON.stringify(err, null, 4), function() {res.end();});
 
-		} else if (result) {
-			res.write(JSON.stringify(result, null, 4), function() {
-				res.end();
-			});
+        }
+        else if (result)
+        {
+            res.write(JSON.stringify(result, null, 4), function() {res.end();});
 
-		} else {
-			res.write(JSON.stringify({"Error":"No response from node"}, null, 4), function() {
-				res.end();
-			});
-		}
-	});
+        }
+        else
+        {
+            res.write(JSON.stringify({"Error":"No response from node"}, null, 4), function() {res.end();});
+        }
+    });
+
+
+
 });
 
-router.get("/rpc-browser", function(req, res, next) {
-	if (!config.demoSite && !req.authenticated) {
+//(!config.demoSite && !req.authenticated)
+router.get("/rpc-browser", function(req, res, next)
+{
+	if (!process.env.BSVEXP_ALLOW_TERMINAL)
+	{
 		res.send("RPC Terminal / Browser may not be accessed without logging-in. This restriction can be modified in your config.js file.");
 		return;
 	}

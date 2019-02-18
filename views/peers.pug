@@ -29,7 +29,7 @@ block content
 	div(class="tab-content")
 		div(id="tab-summary", class="tab-pane active", role="tabpanel")
 			h2(class="h5 mb-3") Connected to #{peerSummary.getpeerinfo.length} 
-				if (peerSummary.getpeerinfo.length == 1)
+				if (peerSummary.getpeerinfo.length === 1)
 					span Peer
 				else
 					span Peers

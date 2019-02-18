@@ -276,7 +276,7 @@ function getBlockTotalFeesFromCoinbaseTxAndBlockHeight(coinbaseTx, blockHeight) 
 }
 
 function refreshExchangeRates() {
-	if (process.env.BTCEXP_NO_RATES) {
+	if (process.env.BSVEXP_NO_RATES) {
 		return;
 	}
 

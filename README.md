@@ -8,10 +8,10 @@ I built this tool because I wanted to use it myself. Whatever reasons one might 
 
 Live demos are available at:
 
-* BSV: https://bsv-explorer.com
-* BSV: http://whatsonchain.com
-* BSV: https://bsvexplorer.io
-* BSV: https://svblox.com
+* [BSV](https://bitcoinsv.io): [https://bsv-explorer.com](https://bsv-explorer.com:4443)
+* [BSV](https://bitcoinsv.io): [http://whatsonchain.com](http://whatsonchain.com)
+* [BSV](https://bitcoinsv.io): [https://bsvexplorer.io](https://bsvexplorer.io)
+* [BSV](https://bitcoinsv.io): [https://svblox.com](https://svblox.com)
 
 # Features
 
@@ -43,11 +43,10 @@ About your server here: [./docs/Server_Setup.md](./docs/Server_Setup.md)
 git clone https://github.com/Zwilla/bsv-rpc-explorer.git
 cd bsv-rpc-explorer
 git pull
+cd
 npm install -g npm
-npm install -g
 npm audit fix
-npm install -g
-bsv-rpc-explorer
+npm install -g bsv-rpc-explorer
 ```
 
 If you're running on mainnet with the default datadir and port, this Should Just Work.

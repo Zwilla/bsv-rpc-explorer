@@ -9,7 +9,7 @@ block content
 			h1(class="h3") RPC Terminal
 
 		div(class="col")
-			if (!config.demoSite && (!config.credentials.rpc || !config.credentials.rpc.rpc))
+			if (!config.demoSite && (!config.credentials.rpc || !config.credentials.rpc.username))
 				span(style="float: right;")
 					a(href="/disconnect", class="btn btn-secondary") Disconnect from node
 	

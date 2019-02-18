@@ -1,9 +1,32 @@
 #!/usr/bin/env node
-var debug = require('debug')('my-application');
-var app = require('../app');
+var debug = require('debug')('my-rpc_explorer');
+var app = require('../app.js');
 
-app.set('port', process.env.PORT || process.env.BTCEXP_PORT || 3002);
-app.set('host', process.env.BTCEXP_HOST || '127.0.0.1');
+app.set('coin', process.env.BSVEXP_COIN || 'BSV');
+app.set('port', process.env.PORT || process.env.BSVEXP_PORT || 3002);
+app.set('host', process.env.BSVEXP_HOST || 'localhost');
+app.set('ALLOW_TERMINAL', process.env.BSVEXP_ALLOW_TERMINAL || false);
+app.set('ALLOW_RPCBROWSER', process.env.BSVEXP_ALLOW_RPCBROWSER || false);
+app.set('BITCOIND_HOST', process.env.BSVEXP_BITCOIND_HOST || 'localhost');
+app.set('BITCOIND_PORT', process.env.BSVEXP_BITCOIND_PORT || 8332);
+app.set('BITCOIND_USER', process.env.BSVEXP_BITCOIND_USER || 'bitcoin_rpc_user');
+app.set('BITCOIND_PASS', process.env.BSVEXP_BITCOIND_PASS || 'bitcoin_rpc_password');
+app.set('ELECTRUMX_SERVERS', process.env.BSVEXP_ELECTRUMX_SERVERS || 'tcp://sv1.hsmiths.com:50001');
+app.set('ENABLE_INFLUXDB', process.env.BSVEXP_ENABLE_INFLUXDB || true);
+app.set('INFLUXDB_HOST', process.env.BSVEXP_INFLUXDB_HOST || '127.0.0.1');
+app.set('INFLUXDB_PORT', process.env.BSVEXP_INFLUXDB_PORT || '8086');
+app.set('INFLUXDB_DBNAME', process.env.BSVEXP_INFLUXDB_DBNAME || 'influxdb');
+app.set('INFLUXDB_USER', process.env.BSVEXP_INFLUXDB_USER || 'db_user');
+app.set('INFLUXDB_PASS', process.env.BSVEXP_INFLUXDB_PASS || 'db_password');
+app.set('COOKIE_SECRET', process.env.BSVEXP_COOKIE_SECRET || 'your_cookie_password_or_key');
+//app.set('BASIC_AUTH_PASSWORD', process.env.BSVEXP_BASIC_AUTH_PASSWORD || 'mypasswordmypasswordmypassword');
+app.set('RPC_BLACKLIST', process.env.BSVEXP_RPC_BLACKLIST || 'addnode,generate,backupwallet,bumpfee,clearbanned,createmultisig,disconnectnode,dumpprivkey,dumpwallet,encryptwallet,generatetoaddress,getaccountaddrss,getaddressesbyaccount,getbalance,getnewaddress,getrawchangeaddress,getreceivedbyaccount,getreceivedbyaddress,gettransaction,getunconfirmedbalance,getwalletinfo,importaddress,importmulti,importprivkey,importprunedfunds,importpubkey,importwallet,keypoolrefill,listaccounts,listaddressgroupings,listlockunspent,listreceivedbyaccount,listreceivedbyaddress,listsinceblock,listtransactions,listunspent,listwallets,lockunspent,logging,move,preciousblock,pruneblockchain,removeprunedfunds,rescanblockchain,savemempool,sendfrom,sendmany,sendtoaddress,setaccount,setban,setnetworkactive,signmessage,signmessagewithprivatekey,signrawtransaction,stop,submitblock,verifychain,walletlock,walletpassphrase,walletpassphrasechange');
+app.set('IPSTACK_KEY', process.env.BSVEXP_IPSTACK_KEY || 'f6a3cffef7c504d750f2f95456017e47');
+//app.set('GANALYTICS_TRACKING', process.env.BSVEXP_GANALYTICS_TRACKING || 'UA-XXXX-X');
+//app.set('SENTRY_URL', process.env.BSVEXP_SENTRY_URL || 'https://00000fffffff@sentry.io/XXXX');
+//app.set('BSVEXP_HOST', process.env.BSVEXP_HOST || '__________');
+
+app.set('trust proxy', 1); // trust first proxy
 
 var server = app.listen(app.get('port'), app.get('host'), function() {
 	debug('Express server listening on ' + server.address().address + ':' + server.address().port);

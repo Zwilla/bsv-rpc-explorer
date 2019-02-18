@@ -47,11 +47,12 @@ const args = require('meow')(`
 
     Or using connection URIs
       $ bsv-rpc-explorer -b bitcoin://bob:myPassword@127.0.0.1:18443/
+      $ bsv-rpc-explorer --port=3002 --host=localhost --bitcoind-user=zwilla --bitcoind-pass=iuzewrASDFq4rSADFASDFoizhfdSDFkjhsadf --enable-influxdb --influxdb-user=zwilla --influxdb-pass=iuzewrASDFq4rSADFASDFoizhfdSDFkjhsadf --influxdb-dbname=influxdb
       $ bsv-rpc-explorer -b bitcoin://127.0.0.1:18443/?cookie=$HOME/.bitcoin/regtest/.cookie
       $ bsv-rpc-explorer --influxdb-uri influx://alice:myPassword@127.0.0.1:8086/dbName
 
     All options may also be specified as environment variables
-      $ BTCEXP_PORT=8080 BTCEXP_BITCOIND_PORT=18443 BTCEXP_BITCOIND_COOKIE=~/.bitcoin/regtest/.cookie bsv-rpc-explorer
+      $ BSVEXP_PORT=8080 BSVEXP_BITCOIND_PORT=18443 BSVEXP_BITCOIND_COOKIE=~/.bitcoin/regtest/.cookie bsv-rpc-explorer
 
 
 `, { flags: { port: {alias:'p'}, host: {alias:'i'}, basicAuthPassword: {alias:'a'}, coin: {alias:'C'}
@@ -65,8 +66,8 @@ const args = require('meow')(`
 const envify = k => k.replace(/([A-Z])/g, '_$1').toUpperCase();
 
 Object.keys(args).filter(k => k.length > 1).forEach(k => {
-  if (args[k] === false) process.env[`BTCEXP_NO_${envify(k)}`] = true;
-  else process.env[`BTCEXP_${envify(k)}`] = args[k];
-})
+  if (args[k] === false) process.env[`BSVEXP_NO_${envify(k)}`] = true;
+  else process.env[`BSVEXP_${envify(k)}`] = args[k];
+});
 
 require('./www');
