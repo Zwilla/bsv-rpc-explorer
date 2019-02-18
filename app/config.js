@@ -246,6 +246,7 @@ module.exports = {
             {name: "Bitcoin SV Explorer", url:"https://bsv-explorer.com", imgUrl:"/img/logo/bsv.png"},
             {name: "Bitcoin SV Project", url:"https://bitcoinsv.io", imgUrl:"/img/logo/bsv.png"},
             {name: "Bitcoin SV Academy", url:"http://bitcoinsv.academy/links", imgUrl:"/img/logo/bsv.png"},
+            {name: "BSV Microblogging Playground", url:"https://unwriter.github.io/datapay/example/playground", imgUrl:"/img/logo/bsv.png"},
         ]
     }
 };
